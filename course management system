@@ -1,1 +1,48 @@
+class Course:
+    def __init__(self, name, duration, fee):
+        self.name = name
+        self.duration = duration
+        self.fee = fee
 
+        if duration <= 6:
+            self.category = "Short-Term"
+        else:
+            self.category = "Long-Term"
+
+    def display(self):
+        print("Course Name:", self.name)
+        print("Duration:", self.duration, "Months")
+        print("Fee:", self.fee)
+        print("Category:", self.category)
+        print("------------------------")
+
+
+class Institute:
+    def __init__(self):
+        self.courses = []
+
+    def add_course(self, course):
+        self.courses.append(course)
+
+    def display_courses(self):
+        print("Institute Course Records")
+        print("========================")
+
+        for course in self.courses:
+            course.display()
+
+
+# Creating Institute
+institute = Institute()
+
+# Adding Courses
+c1 = Course("Python Programming", 3, 5000)
+c2 = Course("Full Stack Development", 12, 25000)
+c3 = Course("Cyber Security", 6, 15000)
+
+institute.add_course(c1)
+institute.add_course(c2)
+institute.add_course(c3)
+
+# Display all courses
+institute.display_courses()
