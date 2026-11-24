@@ -1,0 +1,61 @@
+
+import csv
+
+# Function to display all patient details
+def display_patients():
+    with open("patients.csv", "r") as file:
+        reader = csv.DictReader(file)
+
+        print("\n--- All Patient Records ---")
+
+        for patient in reader:
+            print("Patient ID:", patient["PatientID"])
+            print("Name:", patient["Name"])
+            print("Age:", patient["Age"])
+            print("Disease:", patient["Disease"])
+            print("Contact:", patient["Contact"])
+            print("---------------------------")
+
+# Function to search patient by ID
+def search_patient(patient_id):
+    found = False
+
+    with open("patients.csv", "r") as file:
+        reader = csv.DictReader(file)
+
+        for patient in reader:
+            if patient["PatientID"] == patient_id:
+                print("\nPatient Found!")
+                print("Patient ID:", patient["PatientID"])
+                print("Name:", patient["Name"])
+                print("Age:", patient["Age"])
+                print("Disease:", patient["Disease"])
+                print("Contact:", patient["Contact"])
+                found = True
+                break
+
+    if not found:
+        print("Patient ID not found.")
+
+# Main program
+while True:
+    print("\n===== Hospital Patient Record System =====")
+    print("1. Display All Patients")
+    print("2. Search Patient by ID")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        display_patients()
+
+    elif choice == "2":
+        pid = input("Enter Patient ID: ")
+        search_patient(pid)
+
+    elif choice == "3":
+        print("Exiting Hospital Patient Record System.")
+        break
+
+    else:
+        print("Invalid choice! Try again.")
