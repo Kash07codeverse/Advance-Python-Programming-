@@ -1,0 +1,78 @@
+
+import csv
+import re
+
+# Function to display all movies
+def display_movies():
+    with open("movies.csv", "r") as file:
+        reader = csv.DictReader(file)
+
+        print("\n--- All Movie Records ---")
+        for movie in reader:
+            print("Movie ID:", movie["MovieID"])
+            print("Title:", movie["Title"])
+            print("Genre:", movie["Genre"])
+            print("Year:", movie["Year"])
+            print("Rating:", movie["Rating"])
+            print("------------------------")
+
+# Function to search movie by ID
+def search_by_id(movie_id):
+    found = False
+
+    with open("movies.csv", "r") as file:
+        reader = csv.DictReader(file)
+
+        for movie in reader:
+            if movie["MovieID"] == movie_id:
+                print("\nMovie Found!")
+                print(movie)
+                found = True
+                break
+
+    if not found:
+        print("Movie ID not found.")
+
+# Function to search movie by title using Regex
+def search_by_title(pattern):
+    found = False
+
+    with open("movies.csv", "r") as file:
+        reader = csv.DictReader(file)
+
+        for movie in reader:
+            if re.search(pattern, movie["Title"], re.IGNORECASE):
+                print("\nMovie Found!")
+                print(movie)
+                found = True
+
+    if not found:
+        print("No matching movie found.")
+
+# Main program
+while True:
+    print("\n===== Movie Collection System =====")
+    print("1. Display All Movies")
+    print("2. Search Movie by ID")
+    print("3. Search Movie by Title")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        display_movies()
+
+    elif choice == "2":
+        movie_id = input("Enter Movie ID: ")
+        search_by_id(movie_id)
+
+    elif choice == "3":
+        pattern = input("Enter Movie Title or Pattern: ")
+        search_by_title(pattern)
+
+    elif choice == "4":
+        print("Exiting Movie Collection System.")
+        break
+
+    else:
+        print("Invalid choice! Try again.")
