@@ -1,0 +1,36 @@
+
+import numpy as np
+import pandas as pd
+
+# Create a NumPy array of electricity bills
+bills = np.array([1200, 2500, 3200, 1800, 4500, 2800, 3500, 1500])
+
+# Calculate statistical values
+mean_bill = np.mean(bills)
+median_bill = np.median(bills)
+max_bill = np.max(bills)
+min_bill = np.min(bills)
+
+print("Electricity Bill Analysis")
+print("-------------------------")
+print("Mean Bill:", mean_bill)
+print("Median Bill:", median_bill)
+print("Maximum Bill:", max_bill)
+print("Minimum Bill:", min_bill)
+
+# Create a Pandas DataFrame
+data = {
+    "Consumer ID": [101, 102, 103, 104, 105, 106, 107, 108],
+    "Bill Amount": bills
+}
+
+df = pd.DataFrame(data)
+
+# Display all consumer records
+print("\nAll Consumer Records:")
+print(df)
+
+# Display consumers whose bill exceeds Rs. 3000
+print("\nConsumers with Bill Above Rs. 3000:")
+high_bills = df[df["Bill Amount"] > 3000]
+print(high_bills)
